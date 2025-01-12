@@ -36,45 +36,53 @@ for x in range(grid_size[0]):
         line += grid[y][x]
     xmas += count_matches(line)
 
+print(f"Matches after vertical: {xmas}")
 
-# Secondary Diagonal
+# Diagonal up matches
+
+# DU - Scan down
+
 for z in range(grid_size[1]):
     y = z
     x = 0
     line = ""
-    while y >= 0 and x < grid_size[0]:
+    while y >= 0:
         line += grid[y][x]
         y-=1
         x+=1
-    xmas += count_matches(line)
+    xmas += CountMatches(line)
+    if CountMatches(line) > 0:
+        print(line)
 
-for z in range(grid_size[0]):
+# DU - Scan right
+for z in range(1, grid_size[0]):
     x = z
     y = grid_size[1]-1
     line = ""
-    while x < grid_size[0] and y > grid_size[1]:
+    while x < grid_size[0]:
         #print(f"({x}, {y})")
         line += grid[y][x]
         x+=1
         y-=1
     xmas += count_matches(line)
 
-# Primary Diagonal
+# DD - Scanning down
 for z in range(grid_size[1]):
     y = z
     x = 0
     line = ""
-    while y < grid_size[1] and x < grid_size[0]:
+    while y < grid_size[1]:
         line += grid[y][x]
         y+=1
         x+=1
     xmas += count_matches(line)
 
-for z in range(grid_size[0]):
+# DD - Scanning right
+for z in range(1, grid_size[0]):
     x = z
     y = 0
     line = ""
-    while x < grid_size[0] and y < grid_size[1]:
+    while x < grid_size[0]:
         line += grid[y][x]
         x+=1
         y+=1
